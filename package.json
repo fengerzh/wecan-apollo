@@ -1,0 +1,30 @@
+{
+  "name": "wecan-apollo",
+  "version": "1.0.0",
+  "description": "Apollo server for Wecan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengerzh/wecan-apollo.git"
+  },
+  "keywords": [
+    "wecan",
+    "apollo"
+  ],
+  "author": "Buzz Zhang",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fengerzh/wecan-apollo/issues"
+  },
+  "homepage": "https://github.com/fengerzh/wecan-apollo#readme",
+  "dependencies": {
+    "apollo-server": "^0.3.2",
+    "babel-preset-es2015": "^6.14.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "graphql": "^0.7.0"
+  }
+}

@@ -1,27 +1,26 @@
 import express from 'express';
 import { apolloExpress, graphiqlExpress } from 'apollo-server';
-import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+import { makeExecutableSchema } from 'graphql-tools';
 import bodyParser from 'body-parser';
 
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      hello: {
-        type: GraphQLString,
-        resolve() {
-          return 'world';
-        },
-      },
-    },
-  }),
+import Schema from './data/schema';
+import Resolvers from './data/resolvers';
+
+const executableSchema = makeExecutableSchema({
+  typeDefs: Schema,
+  resolvers: Resolvers,
+  // connectors: Connectors,
 });
+
 const PORT = 3000;
 const endpointURL = '/grahpql';
 
 const app = express();
 
-app.use(endpointURL, bodyParser.json(), apolloExpress({ schema }));
+app.use(endpointURL, bodyParser.json(), apolloExpress({
+  schema: executableSchema,
+  context: {}, //at least(!) an empty object
+}));
 app.use('/graphiql', graphiqlExpress({ endpointURL }));
 
 app.listen(PORT);
